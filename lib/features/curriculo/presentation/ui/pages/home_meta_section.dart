@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/meta_section/on_building_banner.dart';
+
 class HomeMetaSection extends StatelessWidget {
   const HomeMetaSection({Key? key}) : super(key: key);
 
@@ -22,8 +24,10 @@ class HomeMetaSection extends StatelessWidget {
           opacity: .6,
         ),
       ),
-      child: Column(
-        children: [],
+      child: const Column(
+        children: [
+          OnBuildingBanner()
+        ],
       ),
     );
   }
