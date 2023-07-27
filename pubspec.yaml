@@ -4,7 +4,7 @@ description: Esse projeto é uma tentativa de atrair a atenção de recrutadores
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
-version: 1.0.0+1
+version: 1.1.0+2
 
 environment:
   sdk: '>=3.1.0-94.0.dev <4.0.0'

@@ -36,7 +36,7 @@ class AppConfig extends InheritedWidget {
   @override
   bool updateShouldNotify(AppConfig oldWidget) => false;
 
-  String get version => "${packageInfo.version} (${packageInfo.buildNumber})";
+  String get version => "${packageInfo.version}(${packageInfo.buildNumber})";
 
 
 }
