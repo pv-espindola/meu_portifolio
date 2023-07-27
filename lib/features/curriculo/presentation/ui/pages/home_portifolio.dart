@@ -3,7 +3,10 @@ import 'package:meu_portifolio/config/app_config.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/ui/widgets/curriculo_home/contact_home.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/ui/widgets/curriculo_home/education_home.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/ui/widgets/curriculo_home/title_home.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../language/presentation/ui/widgets/language_selector_button.dart';
+import '../../../../language/provider/translation_provider.dart';
 import '../widgets/curriculo_home/general_attributions_home.dart';
 import '../widgets/curriculo_home/introduction_home.dart';
 import '../widgets/curriculo_home/projects_home.dart';
@@ -19,6 +22,22 @@ class HomePortifolio extends StatefulWidget {
 }
 
 class _HomePortifolioState extends State<HomePortifolio> {
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      String locale = Localizations.localeOf(context).languageCode;
+
+      context
+          .read<TranslationProvider>()
+          .getLanguagePhone(locale);
+    });
+    super.initState();
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -28,6 +47,9 @@ class _HomePortifolioState extends State<HomePortifolio> {
         appBar: AppBar(
           title: Text(AppConfig.of(context).appTitle),
           centerTitle: true,
+          actions: [
+            const LanguageSelectorButton()
+          ],
         ),
         body: SafeArea(
           child: SingleChildScrollView(

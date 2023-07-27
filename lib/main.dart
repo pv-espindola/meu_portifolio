@@ -5,7 +5,7 @@ import 'package:meu_portifolio/features/curriculo/presentation/ui/pages/home_por
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'config/app_bootstrap.dart';
+import 'config/app_provider_scope.dart';
 import 'config/app_config.dart';
 import 'config/app_theme.dart';
 import 'config/enums.dart';
@@ -13,9 +13,9 @@ import 'config/enums.dart';
 void main() async{
 
 
-  const myApp = AppBootstrap(child: CurriculoPortifolio());
+  const myApp = AppProviderScope(child: CurriculoPortifolio());
 
-
+  print('');
   final configuredApp = AppConfig(
       appTitle: 'Meu CurriculoPortifolio',
       flavor: AppFlavor.desktop,

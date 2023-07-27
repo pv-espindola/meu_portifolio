@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:meu_portifolio/features/curriculo/data/text_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class IntroductionHome extends StatelessWidget {
   const IntroductionHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-
+  String introductionValue = AppLocalizations.of(context)!.introductionValue;
 
     return Container(
         padding: const EdgeInsets.all(4),

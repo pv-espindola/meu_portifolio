@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 
 class ContactHome extends StatelessWidget {
   const ContactHome({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    String contactTitle = AppLocalizations.of(context)!.contactTitle;
+
     return Container(
       padding: const EdgeInsets.all(8),
       child:  Column(
@@ -16,8 +19,7 @@ class ContactHome extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 16,),
-              alignment : Alignment.center,
-              child: Text('Contato',
+              child: Text(contactTitle.toUpperCase(),
               style: Theme.of(context).textTheme.topicTitle,
               )),
           ContactItem(icon: Icons.person,
