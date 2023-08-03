@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/meta_section/on_building_banner.dart';
+import '../widgets/form/meta_form_box.dart';
+import '../widgets/open_letter.dart';
 
 class HomeMetaSection extends StatelessWidget {
   const HomeMetaSection({Key? key}) : super(key: key);
@@ -8,25 +8,31 @@ class HomeMetaSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+width: MediaQuery.of(context).size.width,
+      constraints: const BoxConstraints(
+        minHeight: 1560,
+        maxWidth: 550
+      ),
       alignment: Alignment.topCenter,
-      height: MediaQuery.of(context).size.height * 2,
+
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: const DecorationImage(
           image: AssetImage(
-            'assets/images/meta-language-background.jpg',
+            'assets/images/fancy-background.jpg',
           ),
           matchTextDirection: true,
-          fit: BoxFit.contain,
-          repeat: ImageRepeat.repeat,
+          fit: BoxFit.fitHeight,
+          repeat: ImageRepeat.noRepeat,
           opacity: .6,
         ),
       ),
       child: const Column(
         children: [
-          OnBuildingBanner()
+          OpenLetter(),
+          MetaFormBox()
         ],
       ),
     );

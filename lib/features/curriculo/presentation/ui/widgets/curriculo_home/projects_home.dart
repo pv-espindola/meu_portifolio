@@ -69,13 +69,16 @@ class ProjectItem extends StatelessWidget {
                   getType(),
                   style: Theme.of(context)
                       .textTheme
-                      .titleSmall!
-                      .copyWith(fontWeight: FontWeight.bold),
+                      .subtopicTitle
                 ),
                 const SizedBox(
                   width: 12,
                 ),
-                Text(title),
+                Text(title,
+                style: Theme.of(context)
+                    .textTheme
+                    .curriculoStyle,
+                ),
               ],
             ),
           ),
@@ -90,7 +93,12 @@ class ProjectItem extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              Flexible(child: Text(value))
+              Flexible(child: Text(value,
+
+                style: Theme.of(context)
+                    .textTheme
+                    .curriculoStyle,
+              ))
             ],
           ),
         ],

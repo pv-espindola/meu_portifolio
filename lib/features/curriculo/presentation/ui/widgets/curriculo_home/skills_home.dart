@@ -49,7 +49,7 @@ class SkillsHome extends StatelessWidget {
         ),
          GroupItem(
             title: skillsTopicValue2,
-            values: const ['Flutter', 'Firebase Products', 'HTML/CSS']),
+            values: const ['Flutter', 'Firebase Products', 'REST API']),
         const SizedBox(
           height: 8,
         ),

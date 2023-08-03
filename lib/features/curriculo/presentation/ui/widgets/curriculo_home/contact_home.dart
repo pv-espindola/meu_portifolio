@@ -56,7 +56,9 @@ class ContactItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon),
-        Flexible(child: Text(name,))
+        Flexible(child: Text(name,
+        style: Theme.of(context).textTheme.curriculoStyle,
+        ))
       ],
     );
   }

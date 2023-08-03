@@ -12,7 +12,7 @@ import '../widgets/curriculo_home/introduction_home.dart';
 import '../widgets/curriculo_home/projects_home.dart';
 import '../widgets/curriculo_home/skills_home.dart';
 import '../widgets/curriculo_home/summary_home.dart';
-import 'home_meta_section.dart';
+import '../../../../meta/presentation/ui/pages/home_meta_section.dart';
 
 class HomePortifolio extends StatefulWidget {
   const HomePortifolio({Key? key}) : super(key: key);
@@ -22,21 +22,15 @@ class HomePortifolio extends StatefulWidget {
 }
 
 class _HomePortifolioState extends State<HomePortifolio> {
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       String locale = Localizations.localeOf(context).languageCode;
 
-      context
-          .read<TranslationProvider>()
-          .getLanguagePhone(locale);
+      context.read<TranslationProvider>().getLanguagePhone(locale);
     });
     super.initState();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,27 +41,45 @@ class _HomePortifolioState extends State<HomePortifolio> {
         appBar: AppBar(
           title: Text(AppConfig.of(context).appTitle),
           centerTitle: true,
-          actions: [
-            const LanguageSelectorButton()
-          ],
+          actions: [const LanguageSelectorButton()],
         ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
                 const TitleHome(),
-                Container(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Flexible(flex: 3, child: CurriculoSector()),
-                      if (constrains.maxWidth > 550)
-                        const Expanded(
-                          flex: 2,
-                          child: HomeMetaSection()
-                        )
-                    ],
-                  ),
+                Stack(
+                  children: [
+
+                    Container(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Flexible(flex: 3, child: CurriculoSector()),
+                          if (constrains.maxWidth > 550)
+                            const Expanded(flex: 2, child: HomeMetaSection()),
+
+                        ],
+                      ),
+                    ),
+                    if (constrains.maxWidth > 550)
+                      Positioned(
+                          top: 10,
+                          left: constrains.maxWidth * .56,
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            child: IconButton(
+                              color: Colors.blueAccent,
+                              icon: Icon(Icons.close_fullscreen_rounded),
+                              onPressed: () {},
+                            ),
+                          )),
+                  ],
                 ),
               ],
             ),

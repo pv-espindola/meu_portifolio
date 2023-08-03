@@ -10,7 +10,7 @@ class TitleHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return FittedBox(
       child: Container(
-        color: Colors.cyanAccent,
+        color: const Color(0xff1d256c),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -25,6 +25,7 @@ class TitleHome extends StatelessWidget {
                 Text(
                   'Paulo Victor Espíndola',
                   style: Theme.of(context).textTheme.firstTitleName,
+
                 ),
                 Text(
                   'FLUTTER DEVELOPER - FULL-STACK / FRONT-END',
@@ -33,7 +34,9 @@ class TitleHome extends StatelessWidget {
                 Container(
                   alignment: Alignment.bottomRight,
                   padding: const EdgeInsets.only(right: 20),
-                  child: Text('version: ${AppConfig.of(context).version}'),),
+                  child: Text('version: ${AppConfig.of(context).version}',
+                  style: TextStyle(color: Colors.white),
+                  ),),
 
               ],
           ),
