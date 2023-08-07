@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/form/meta_form_box.dart';
+import '../widgets/layout_size_control.dart';
 import '../widgets/open_letter.dart';
+import '../widgets/post_box.dart';
 
 class HomeMetaSection extends StatelessWidget {
   const HomeMetaSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
-width: MediaQuery.of(context).size.width,
-      constraints: const BoxConstraints(
-        minHeight: 1560,
-        maxWidth: 550
-      ),
+      width: MediaQuery.of(context).size.width,
+      height: 1560,
+      // constraints: const BoxConstraints(
+      //   minHeight: 1560,
+      //   maxHeight: 1560,
+      //   maxWidth: 550,
+      //
+      // ),
       alignment: Alignment.topCenter,
 
       margin: const EdgeInsets.all(8),
@@ -29,12 +36,20 @@ width: MediaQuery.of(context).size.width,
           opacity: .6,
         ),
       ),
-      child: const Column(
-        children: [
-          OpenLetter(),
-          MetaFormBox()
-        ],
+      child: const SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(child: LayoutSizeControl()),
+            OpenLetter(),
+            PostBox(),
+            MetaFormBox()
+          ],
+        ),
       ),
     );
   }
 }
+
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meu_portifolio/features/language/provider/translation_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../provider/translation_provider.dart';
 
 class LanguageSelectorButton extends StatefulWidget {
   const LanguageSelectorButton({Key? key}) : super(key: key);
@@ -33,12 +34,14 @@ class _LanguageSelectorButtonState extends State<LanguageSelectorButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 130,
+
       margin: const EdgeInsets.only(right: 16),
       child: Row(
         children: [
           Image.asset(
             'assets/images/br.png',
-            scale: 5,
+            scale: value? 7 : 5 ,
           ),
           const SizedBox(width: 6,),
           SizedBox(
@@ -69,7 +72,7 @@ class _LanguageSelectorButtonState extends State<LanguageSelectorButton> {
           const SizedBox(width: 6,),
           Image.asset(
             'assets/images/us.png',
-            scale: 4.5,
+            scale: value? 4.5 : 6.5,
           ),
         ],
       ),
@@ -86,3 +89,26 @@ class _LanguageSelectorButtonState extends State<LanguageSelectorButton> {
     return emoji;
   }
 }
+
+class FlagLanguage extends StatelessWidget {
+  final bool value;
+  const FlagLanguage({
+    required this.value,
+    Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> flags = ['assets/images/br.png', 'assets/images/us.png' ];
+
+    return AnimatedSwitcher(duration: const Duration(seconds: 1),
+    child: Image.asset(
+      flags[value?1 : 0],
+      scale: value? 4.5 : 6.5,
+    ),
+    );
+  }
+}
+
+
+
+

@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_config.dart';
+import 'package:meu_portifolio/features/meta/data/post_type_factory.dart';
+import 'package:meu_portifolio/features/meta/presentation/providers/meta_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../data/enums.dart';
 
 
 
-class PostTypeSelector extends StatefulWidget {
-  const PostTypeSelector({Key? key}) : super(key: key);
+
+class SelectorPostType extends StatefulWidget {
+  const SelectorPostType({Key? key}) : super(key: key);
 
   @override
-  State<PostTypeSelector> createState() => _PostTypeSelectorState();
+  State<SelectorPostType> createState() => _SelectorPostTypeState();
 }
 
-class _PostTypeSelectorState extends State<PostTypeSelector> {
+class _SelectorPostTypeState extends State<SelectorPostType> {
   PostType type = PostType.note;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
 
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: PostType.values
             .map((e) => Flexible(
-                  child: PostTypeRadioButtom(
-                      text: e.name,
+                  child: PostTypeRadioButton(
                       value: e,
                       groupValue: type,
                       onChanged: onChanged)
@@ -60,21 +64,20 @@ class _PostTypeSelectorState extends State<PostTypeSelector> {
     if (value != null) {
       setState(() {
         type = value;
+        context.read<MetaProvider>().setPostType(value);
       });
     }
   }
 }
 
 
-class PostTypeRadioButtom extends StatelessWidget {
-  final String text;
+class PostTypeRadioButton extends StatelessWidget {
   final PostType value;
   final PostType groupValue;
   final Function(PostType? value) onChanged;
 
 
-  const PostTypeRadioButtom({
-    required this.text,
+  const PostTypeRadioButton({
     required this.value,
     required this.groupValue,
     required this.onChanged,
@@ -82,6 +85,7 @@ class PostTypeRadioButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String postName = PostTypeFactory.getPostName(context, value);
     return Container(
       child: Column(
         children: [
@@ -89,7 +93,7 @@ class PostTypeRadioButtom extends StatelessWidget {
               value: value,
               groupValue: groupValue,
               onChanged: onChanged),
-          FittedBox(child: Text(text.capitalize()))
+          FittedBox(child: Text(postName.capitalize()))
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,4 +46,27 @@ extension StringExtension on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
+
+
+}
+
+extension FormatExtension on DateTime {
+  String formatted() {
+    try {
+      return  DateFormat('dd/MM/yy').format(this);
+    } catch (e) {
+      return toIso8601String();
+    }
+  }
+
+  String formattedWithHours() {
+    try {
+      return  '${DateFormat('dd / MM / yy').format(this)}\n ${DateFormat('HH:s').format(this)}';
+    } catch (e) {
+      return toIso8601String();
+    }
+  }
+
+
+
 }

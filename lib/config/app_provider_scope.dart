@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/providers/app_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../features/language/provider/translation_provider.dart';
-import '../features/meta/presentation/providers/meta_form_provider.dart';
+import '../features/language/presentation/provider/translation_provider.dart';
+import '../features/meta/presentation/providers/meta_provider.dart';
 
 class AppProviderScope extends StatelessWidget {
   final Widget child;
@@ -19,8 +18,8 @@ class AppProviderScope extends StatelessWidget {
       ChangeNotifierProvider<TranslationProvider>(
           create: (_) => TranslationProvider()
       ),
-      ChangeNotifierProvider<MetaFormProvider>(
-          create: (_) => MetaFormProvider.instance
+      ChangeNotifierProvider<MetaProvider>(
+          create: (_) => MetaProvider.instance
       ),
     ], child: child);
   }

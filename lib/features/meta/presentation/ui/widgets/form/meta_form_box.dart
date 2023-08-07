@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meu_portifolio/features/meta/presentation/providers/meta_form_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:meu_portifolio/features/meta/data/models/meta_state.dart';
+import 'package:meu_portifolio/features/meta/presentation/providers/meta_provider.dart';
+import 'package:meu_portifolio/features/meta/presentation/ui/widgets/form/thanks_message.dart';
 import 'package:provider/provider.dart';
 
-import 'post_type_selector.dart';
+import '../../../../data/enums.dart';
+import 'selector_post_type.dart';
+import 'textfield_form_meta.dart';
 
 class MetaFormBox extends StatelessWidget {
   const MetaFormBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formProvider = context.watch<MetaProvider>();
+    bool isFormEmpty = formProvider.state.formStatus == FormStatus.empty;
     return Container(
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.all(12),
@@ -20,7 +27,14 @@ class MetaFormBox extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
             )),
-        child: const FormBuilderMeta());
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 2500),
+          switchInCurve: Curves.easeOut,
+          layoutBuilder: (widget, widgets) {
+            return widget!;
+          },
+          child: isFormEmpty ? const FormBuilderMeta() : const ThanksMessage(),
+        ));
   }
 }
 
@@ -29,7 +43,19 @@ class FormBuilderMeta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formProvider = context.read<MetaFormProvider>();
+    final formProvider = context.read<MetaProvider>();
+    final headTitle = AppLocalizations.of(context)!.formHeadTitle;
+    final headText = AppLocalizations.of(context)!.formHeadText;
+    final name = AppLocalizations.of(context)!.name;
+    final role = AppLocalizations.of(context)!.role;
+    final email = AppLocalizations.of(context)!.email;
+    final message = AppLocalizations.of(context)!.message;
+    final nameHint = AppLocalizations.of(context)!.nameHint;
+    final roleHint = AppLocalizations.of(context)!.roleHint;
+    final emailHint = AppLocalizations.of(context)!.emailHint;
+    final messageHint = getMessageHint(context);
+
+
     return Column(
       children: [
         Container(
@@ -40,7 +66,7 @@ class FormBuilderMeta extends StatelessWidget {
                 color: Colors.white.withOpacity(.65)),
             child: RichText(
               text: TextSpan(
-                  text: 'Ajude o porjeto \n',
+                  text: '$headTitle \n',
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -48,7 +74,7 @@ class FormBuilderMeta extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          'forneça seu feedback deixando um comentario, pergunta ou desafio.',
+                          headText,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ]),
@@ -56,7 +82,7 @@ class FormBuilderMeta extends StatelessWidget {
             )),
         Container(
           width: double.maxFinite,
-          height: 450,
+          height: 470,
           margin: const EdgeInsets.fromLTRB(24, 8, 24, 24),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
@@ -66,34 +92,52 @@ class FormBuilderMeta extends StatelessWidget {
             key: formProvider.formKey,
             child: Column(
               children: [
-                const Flexible(child: PostTypeSelector()),
-                const TextFieldFormMeta(
-                  label: 'Nome',
+                const Flexible(flex: 2, child: SelectorPostType()),
+                Flexible(
+                  flex: 3,
+                  child: TextFieldFormMeta(
+                    label: name,
+                    hint: nameHint,
+                    validator: formProvider.nameValidate,
+                  ),
                 ),
-                const Row(
+                Row(
                   children: [
                     Flexible(
                         flex: 8,
                         child: TextFieldFormMeta(
-                          label: 'Cargo',
+                          label: role,
+                          hint: roleHint,
+                          validator: formProvider.roleValidate,
                         )),
                     Flexible(
                         flex: 7,
                         child: TextFieldFormMeta(
-                          label: 'Email',
-                          hint: 'example@company.com',
+                          label: email,
+                          hint: emailHint,
+                          validator: formProvider.emailValidate,
                         ))
                   ],
                 ),
-                const TextFieldFormMeta(
-                  label: 'Message',
-                  isMessage: true,
+                Flexible(
+                  flex: 4,
+                  child: TextFieldFormMeta(
+                    label: message,
+                    hint: messageHint,
+                    isMessage: true,
+                    validator: formProvider.messageValidate,
+                  ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      formProvider.validate();
+
+                      //SUBMIT WITHOUT SEND ANY DATA TO SERVER
+                      //formProvider.updateState(formStatus: FormStatus.completed);
+                    },
                     icon: const Icon(Icons.cloud_upload),
                     label: const Text('submit'))
               ],
@@ -103,47 +147,19 @@ class FormBuilderMeta extends StatelessWidget {
       ],
     );
   }
-}
 
-class TextFieldFormMeta extends StatelessWidget {
-  final String label;
-  final String? hint;
-  final String? Function(String?)? validator;
-  final bool? isMessage;
+  String getMessageHint(BuildContext context){
+    final formProvider = context.watch<MetaProvider>();
 
-  const TextFieldFormMeta({
-        required this.label,
-        this.hint,
-        this.validator,
-        this.isMessage,
-        Key? key})
-      : super(key: key);
+    switch(formProvider.postType){
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      child: TextFormField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25.0),
-              borderSide: const BorderSide(width: 12, color: Colors.blue),
-            ),
-            label: Text(label),
-            hintText: hint,
-            labelStyle: const TextStyle(
-              color: Colors.black,
-            ),
-            alignLabelWithHint: true,
+      case PostType.note:
+        return AppLocalizations.of(context)!.messageNoteHint;
+      case PostType.question:
+        return AppLocalizations.of(context)!.messageQuestionHint;
+      case PostType.challenge:
+        return AppLocalizations.of(context)!.messageChallengeHint;
+    }
 
-            // suffixIcon: isValid
-            //     ? const Icon(Icons.check, color: Colors.green)
-            //     : const Icon(Icons.error, color: Colors.red),
-
-            floatingLabelBehavior: FloatingLabelBehavior.auto),
-        maxLines: isMessage ?? false ? 5 : 1,
-        validator: validator,
-      ),
-    );
   }
 }

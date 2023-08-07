@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_config.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TitleHome extends StatelessWidget {
   const TitleHome({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class TitleHome extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   padding: const EdgeInsets.only(right: 20),
                   child: Text('version: ${AppConfig.of(context).version}',
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   ),),
 
               ],

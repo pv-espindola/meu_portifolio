@@ -39,8 +39,8 @@ class SkillsHome extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              TopicItem(text: 'Java'),
-              TopicItem(text: 'Dart'),
+              const TopicItem(text: 'Java'),
+              const TopicItem(text: 'Dart'),
             ],
           ),
         ),

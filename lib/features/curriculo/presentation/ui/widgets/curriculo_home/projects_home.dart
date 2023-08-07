@@ -56,7 +56,7 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 700, minWidth: 400),
+      constraints: const BoxConstraints(maxWidth: 700, minWidth: 400),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -86,7 +86,7 @@ class ProjectItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 16,
               ),

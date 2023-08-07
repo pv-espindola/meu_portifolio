@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
 
 class MetaExpansionBox extends StatelessWidget {
-  final String title;
-  final String value;
+  String title;
+  final String? value;
+  final Gradient? gradient;
+  final Widget? child;
+  final Icon? icon;
 
-  const MetaExpansionBox({required this.title, required this.value, Key? key})
+  MetaExpansionBox({
+    this.gradient,
+    this.child,
+    this.icon,
+    required this.title, this.value, Key? key})
       : super(key: key);
 
   @override
@@ -22,7 +29,7 @@ class MetaExpansionBox extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: Colors.purpleAccent,
-            gradient: LinearGradient(
+            gradient: gradient ?? LinearGradient(
               colors: colors,
               tileMode: TileMode.mirror,
               begin: Alignment.bottomRight,
@@ -48,15 +55,10 @@ class MetaExpansionBox extends StatelessWidget {
                 )),
             child: FittedBox(child: Text(title)),
           ),
-          children: [
+          trailing: icon,
+          children: [child!]
 
-            Container(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  value,
-                  style: Theme.of(context).textTheme.metaBoxTitle,
-                )),
-          ]),
+        ),
         );
   }
 }

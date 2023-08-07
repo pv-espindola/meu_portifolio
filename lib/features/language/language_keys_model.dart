@@ -1,6 +1,6 @@
 
 
-import 'provider/translation_provider.dart';
+import 'presentation/provider/translation_provider.dart';
 
 class LanguageKeysModel {
   final String order, name, interest, category, type;

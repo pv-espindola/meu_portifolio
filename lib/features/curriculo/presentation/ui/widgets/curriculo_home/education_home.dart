@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
-import 'package:meu_portifolio/features/curriculo/data/text_data.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/ui/widgets/curriculo_home/topic_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
