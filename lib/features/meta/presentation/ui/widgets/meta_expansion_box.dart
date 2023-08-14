@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meu_portifolio/config/app_theme.dart';
 
 class MetaExpansionBox extends StatelessWidget {
   String title;
@@ -17,11 +16,7 @@ class MetaExpansionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> colors = List.castFrom([
-      const Color(0xffDFA613),
-      const Color(0xffDC7FB2),
-      const Color(0xffAD63BB),
-    ].map((e) => e.withOpacity(.9)).toList());
+
 
     return Container(
         width: MediaQuery.of(context).size.width,
@@ -29,13 +24,12 @@ class MetaExpansionBox extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: Colors.purpleAccent,
-            gradient: gradient ?? LinearGradient(
-              colors: colors,
-              tileMode: TileMode.mirror,
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-            )),
+            gradient: gradient!,
+        ),
         child: ExpansionTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
           title: Container(
             width: 40,
             height: 30,

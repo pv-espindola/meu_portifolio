@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_config.dart';
 import 'package:meu_portifolio/features/meta/data/post_type_factory.dart';
+import 'package:meu_portifolio/features/meta/presentation/ui/widgets/empty_sign.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/enums.dart';
@@ -17,6 +18,7 @@ class PostBuilder extends StatelessWidget {
     ScrollController controller = ScrollController();
     final formProvider = context.watch<MetaProvider>();
     List<PostModel> posts = formProvider.getPostContent(postType);
+    bool isEmpty = posts.isEmpty;
     return Container(
       padding: const EdgeInsets.all(16),
       constraints: BoxConstraints(
@@ -25,7 +27,10 @@ class PostBuilder extends StatelessWidget {
         minWidth: 300,
         maxWidth: MediaQuery.of(context).size.width,
       ),
-      child: RawScrollbar(
+      child: isEmpty ?
+      const EmptySign()
+      : RawScrollbar(
+
         thumbColor: Colors.white,
         thumbVisibility: true,
         trackVisibility: true,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meu_portifolio/features/curriculo/presentation/providers/app_provider.dart';
-import 'package:meu_portifolio/features/curriculo/presentation/ui/pages/home_portifolio.dart';
+import 'package:meu_portifolio/features/home/presentation/ui/pages/home_portifolio.dart';
 import 'package:meu_portifolio/features/meta/presentation/providers/meta_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -65,6 +65,8 @@ class _CurriculoPortifolioState extends State<CurriculoPortifolio> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+
+
       supportedLocales: L10n.support,
       scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
       home: const HomePortifolio(),

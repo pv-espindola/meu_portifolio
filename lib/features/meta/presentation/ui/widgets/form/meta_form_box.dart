@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:meu_portifolio/config/app_theme.dart';
 import 'package:meu_portifolio/features/meta/data/models/meta_state.dart';
 import 'package:meu_portifolio/features/meta/presentation/providers/meta_provider.dart';
 import 'package:meu_portifolio/features/meta/presentation/ui/widgets/form/thanks_message.dart';
@@ -68,9 +69,7 @@ class FormBuilderMeta extends StatelessWidget {
               text: TextSpan(
                   text: '$headTitle \n',
                   style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
+                      .textTheme.formHeadStyle,
                   children: [
                     TextSpan(
                       text:
@@ -92,7 +91,8 @@ class FormBuilderMeta extends StatelessWidget {
             key: formProvider.formKey,
             child: Column(
               children: [
-                const Flexible(flex: 2, child: SelectorPostType()),
+                const Flexible(flex: 3,
+                    child: SelectorPostType()),
                 Flexible(
                   flex: 3,
                   child: TextFieldFormMeta(
@@ -119,8 +119,8 @@ class FormBuilderMeta extends StatelessWidget {
                         ))
                   ],
                 ),
-                Flexible(
-                  flex: 4,
+                Expanded(
+                  flex: 6,
                   child: TextFieldFormMeta(
                     label: message,
                     hint: messageHint,

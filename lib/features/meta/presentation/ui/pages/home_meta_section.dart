@@ -13,7 +13,6 @@ class HomeMetaSection extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 1560,
       // constraints: const BoxConstraints(
       //   minHeight: 1560,
       //   maxHeight: 1560,
@@ -36,20 +35,28 @@ class HomeMetaSection extends StatelessWidget {
           opacity: .6,
         ),
       ),
-      child: const SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(child: LayoutSizeControl()),
-            OpenLetter(),
-            PostBox(),
-            MetaFormBox()
-          ],
-        ),
-      ),
+      child: const MetaSectionBuilder(),
     );
   }
 }
+
+class MetaSectionBuilder extends StatelessWidget {
+  const MetaSectionBuilder({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(child: LayoutSizeControl()),
+        OpenLetter(),
+        PostBox(),
+        MetaFormBox()
+      ],
+    );
+  }
+}
+
 
 

@@ -7,17 +7,19 @@ class TitleHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    bool isPhoneView = width <= 550;
     return FittedBox(
       child: Container(
         color: const Color(0xff1d256c),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         child: Stack(
 
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width,
+              width: width,
               child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -27,7 +29,7 @@ class TitleHome extends StatelessWidget {
 
                 ),
                 Text(
-                  'FLUTTER DEVELOPER - FULL-STACK / FRONT-END',
+                  'FLUTTER DEVELOPER - FULL-STACK',
                   style: Theme.of(context).textTheme.secondSubTitleName,
                 ),
                 Container(

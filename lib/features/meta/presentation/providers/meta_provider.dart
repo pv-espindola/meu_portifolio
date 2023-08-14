@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:meu_portifolio/config/app_config.dart';
 import 'package:meu_portifolio/features/meta/data/models/meta_state.dart';
 import 'package:meu_portifolio/features/meta/data/models/post_model.dart';
 import 'package:meu_portifolio/features/meta/domain/repositories/meta_post_firestore.dart';
@@ -107,8 +108,12 @@ class MetaProvider extends ChangeNotifier {
   }
 
   String? emailValidate(String? value) {
+    bool isEmailValid = value!.isValidEmail();;
     if (value == null || value.isEmpty) {
       return 'Campo Obrigatorio';
+    }
+    else if(!isEmailValid){
+      return 'Use um email válido';
     }
     _postModel.email = value;
     return null;

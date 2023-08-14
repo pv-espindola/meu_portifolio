@@ -18,7 +18,7 @@ class MetaPostFirestore {
     });
 
     for(var post in posts){
-      print('Post creator => ${post.name},\n Post id => ${post.id}, ');
+      print('Post creator => ${post.name},\n Post id => ${post.id},\n Post id => ${post.message}, ');
     }
 
     posts.sort((a,b) => b.creationDate.compareTo(a.creationDate));

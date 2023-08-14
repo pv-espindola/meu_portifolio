@@ -22,7 +22,6 @@ void main() async{
     ),
   );
 
-  print('');
   final configuredApp = AppConfig(
       appTitle: 'Meu CurriculoPortifolio',
       flavor: AppFlavor.desktop,

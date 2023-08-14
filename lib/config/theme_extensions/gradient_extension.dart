@@ -38,6 +38,19 @@ class GradientExtension extends ThemeExtension<GradientExtension> {
     );
   }
 
+  Gradient get openLetterGradient {
+    List<Color> colors = List.castFrom([
+      const Color(0xffDFA613),
+      const Color(0xffDC7FB2),
+      const Color(0xffAD63BB),
+    ].map((e) => e.withOpacity(.9)).toList());
+    return LinearGradient(
+      colors: colors,
+      begin: Alignment.bottomRight,
+      end: Alignment.topLeft,
+    );
+  }
+
   @override
   ThemeExtension<GradientExtension> copyWith() => GradientExtension();
 

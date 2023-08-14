@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThanksMessage extends StatelessWidget {
   const ThanksMessage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final thanks = AppLocalizations.of(context)!.thanks;
     return Column(
       children: [
 
@@ -23,7 +25,7 @@ class ThanksMessage extends StatelessWidget {
 
 
             Text(
-              'Obrigado...',
+              '$thanks...',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.thanksStyle,
             ),

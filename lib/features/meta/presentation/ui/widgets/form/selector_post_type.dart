@@ -19,6 +19,12 @@ class SelectorPostType extends StatefulWidget {
 class _SelectorPostTypeState extends State<SelectorPostType> {
   PostType type = PostType.note;
 
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,10 +35,12 @@ class _SelectorPostTypeState extends State<SelectorPostType> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: PostType.values
             .map((e) => Flexible(
-                  child: PostTypeRadioButton(
-                      value: e,
-                      groupValue: type,
-                      onChanged: onChanged)
+                  child: FittedBox(
+                    child: PostTypeRadioButton(
+                        value: e,
+                        groupValue: type,
+                        onChanged: onChanged),
+                  )
 
                 ))
             .toList(),

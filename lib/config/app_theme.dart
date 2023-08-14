@@ -14,6 +14,18 @@ class AppTheme {
         GradientExtension(),
       ],
       textTheme: const TextTheme(),
+
+    pageTransitionsTheme: const PageTransitionsTheme(
+    builders: <TargetPlatform, PageTransitionsBuilder>{
+    TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+    TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+    },
+    ),
+
+
     );
   }
 }
@@ -44,6 +56,15 @@ extension ThemeDataExtension on TextTheme {
         fontWeight: FontWeight.w700,
       );
 
+  TextStyle get likableStyle => const TextStyle(
+      color: Colors.indigo,
+      fontWeight: FontWeight.w500,
+      decoration: TextDecoration.underline,
+      decorationColor: Colors.indigo
+  );
+
+
+
   TextStyle get metaStyle => const TextStyle(
         fontFamily: 'Arial',
       );
@@ -52,10 +73,32 @@ extension ThemeDataExtension on TextTheme {
         fontSize: 15,
       );
 
+  TextStyle get formHeadStyle => metaStyle.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+
   TextStyle get thanksStyle => TextStyle(
       fontFamily: 'Borel',
       fontSize: 36,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.italic,
       color: Colors.indigo[900]);
+
+  TextStyle get layoutSizeControlStyleOff => TextStyle(
+      fontFamily: 'Borel',
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+      color: Colors.indigo[900]);
+
+  TextStyle get layoutSizeControlStyleOn => TextStyle(
+      fontFamily: 'Borel',
+      fontSize: 30,
+      fontWeight: FontWeight.normal,
+      color: Colors.indigo[300]);
+
+
+
+
 }
