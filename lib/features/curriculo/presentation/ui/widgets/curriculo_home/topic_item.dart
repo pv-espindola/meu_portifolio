@@ -13,11 +13,19 @@ class TopicItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Icon(Icons.arrow_forward_ios_rounded,
-          size: 16,
+        const Flexible(
+          flex: 1,
+          child: Padding(
+            padding: EdgeInsets.only(top: 2.0),
+            child: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16,
+            ),
+          ),
         ),
         Flexible(
+          flex: 5,
           child: Text(text,
+            style: Theme.of(context).textTheme.curriculoStyle,
             overflow: TextOverflow.clip,
             maxLines: 12,
           ),
