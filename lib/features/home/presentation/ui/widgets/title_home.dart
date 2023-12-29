@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:meu_portifolio/config/app_config.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
 
@@ -7,6 +8,7 @@ class TitleHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     double width = MediaQuery.of(context).size.width;
     bool isPhoneView = width <= 550;
     return FittedBox(
@@ -23,11 +25,13 @@ class TitleHome extends StatelessWidget {
               child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Paulo Victor Espíndola',
-                  style: Theme.of(context).textTheme.firstTitleName,
+                Animate(
+                  child: Text(
+                    'Paulo Victor Espíndola',
+                    style: Theme.of(context).textTheme.firstTitleName,
 
-                ),
+                  ),
+                ).slide(duration: 1200.ms),
                 Text(
                   'FLUTTER DEVELOPER - FULL-STACK',
                   style: Theme.of(context).textTheme.secondSubTitleName,

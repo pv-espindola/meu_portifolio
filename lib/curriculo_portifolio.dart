@@ -7,6 +7,8 @@ import 'package:meu_portifolio/features/curriculo/presentation/providers/app_pro
 import 'package:meu_portifolio/features/home/presentation/ui/pages/home_portifolio.dart';
 import 'package:meu_portifolio/features/meta/presentation/providers/meta_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:seo_renderer/helpers/renderer_state.dart';
+import 'package:seo_renderer/helpers/robot_detector_vm.dart';
 
 import 'config/app_config.dart';
 import 'features/language/presentation/provider/translation_provider.dart';
@@ -26,51 +28,36 @@ class _CurriculoPortifolioState extends State<CurriculoPortifolio> {
   void initState() {
     super.initState();
     appProvider = context.read<AppProvider>();
-    metaFormProvider = context.read<MetaProvider>()
-    ..loadMetaState();
-
-
+    metaFormProvider = context.read<MetaProvider>()..loadMetaState();
   }
+
   @override
   void didChangeDependencies() {
     double width = MediaQuery.of(context).size.width;
     appProvider.loadScreenWidth(width);
-    print('Tela => $width');
     super.didChangeDependencies();
   }
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
 
-
-
-
-    return MaterialApp(
-
-      routes: const {
-
-      },
-      theme: AppConfig.of(context).themeData,
-      debugShowCheckedModeBanner: false,
-      locale: context.watch<TranslationProvider>().locale,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-
-
-      supportedLocales: L10n.support,
-      scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
-      home: const HomePortifolio(),
-
+    return RobotDetector(
+      child: MaterialApp(
+        routes: const {},
+        navigatorObservers: [seoRouteObserver],
+        theme: AppConfig.of(context).themeData,
+        debugShowCheckedModeBanner: false,
+        locale: context.watch<TranslationProvider>().locale,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: L10n.support,
+        scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
+        home: const HomePortifolio(),
+      ),
     );
   }
 }
@@ -78,8 +65,8 @@ class _CurriculoPortifolioState extends State<CurriculoPortifolio> {
 class NoThumbScrollBehavior extends ScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-    PointerDeviceKind.stylus,
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.stylus,
+      };
 }

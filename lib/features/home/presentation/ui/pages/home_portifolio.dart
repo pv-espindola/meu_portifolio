@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_portifolio/config/app_config.dart';
-import 'package:meu_portifolio/features/curriculo/presentation/ui/widgets/curriculo_home/title_home.dart';
+import 'package:meu_portifolio/features/home/presentation/ui/widgets/title_home.dart';
 import 'package:provider/provider.dart';
 import '../../../../curriculo/presentation/providers/app_provider.dart';
 import '../../../../language/presentation/provider/translation_provider.dart';

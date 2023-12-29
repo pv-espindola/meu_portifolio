@@ -5,6 +5,7 @@ import 'package:meu_portifolio/config/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:meu_portifolio/config/app_url_launcher.dart';
 import 'package:meu_portifolio/features/curriculo/data/model/contact_model.dart';
+import 'package:seo_renderer/renderers/link_renderer/link_renderer_vm.dart';
 
 
 
@@ -95,41 +96,45 @@ class LinkableItem extends StatelessWidget{
             : model.action;
 
 
-    return Material(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(50))),
-        child: InkWell(
-          splashColor : Colors.grey,
-          splashFactory : InkSplash.splashFactory,
-          onTap: action,
-          onHover: (value){boxColor = value? Colors.purpleAccent[200]! : Colors.transparent;},
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
-            margin: const EdgeInsets.only(bottom: 2),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
-              color: boxColor,
+    return LinkRenderer(
+      text: model.text,
+      href: model.text,
+      child: Material(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(50))),
+          child: InkWell(
+            splashColor : Colors.grey,
+            splashFactory : InkSplash.splashFactory,
+            onTap: action,
+            onHover: (value){boxColor = value? Colors.purpleAccent[200]! : Colors.transparent;},
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+              margin: const EdgeInsets.only(bottom: 2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                color: boxColor,
 
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    model.icon,
+                    size: 24,
+                    color: Colors.black,),
+                  const SizedBox(width: 8,),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      model.text,
+                      style: Theme.of(context).textTheme.likableStyle,
+                    ),
+                  )
+                ],
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  model.icon,
-                  size: 24,
-                  color: Colors.black,),
-                const SizedBox(width: 8,),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    model.text,
-                    style: Theme.of(context).textTheme.likableStyle,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+          )),
+    );
 
   }
 }

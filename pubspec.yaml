@@ -25,6 +25,8 @@ dependencies:
   firebase_core: ^2.15.0
   cloud_firestore: ^4.8.4
   url_launcher: ^6.1.12
+  flutter_animate: ^4.2.0+1
+  seo_renderer: ^0.6.0
 
 dev_dependencies:
   flutter_test:

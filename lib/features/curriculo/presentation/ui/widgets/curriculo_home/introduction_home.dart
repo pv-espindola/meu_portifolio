@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:meu_portifolio/config/app_theme.dart';
+import 'package:meu_portifolio/config/tools/seo_text.dart';
 
 
 class IntroductionHome extends StatelessWidget {
@@ -19,9 +20,11 @@ class IntroductionHome extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.yellow[200]!)
           ),
-          child: Text(introductionValue,
-          style: Theme.of(context).textTheme.curriculoStyle,
-          textAlign: TextAlign.center,
+          child: SeoText(
+            textAlign: TextAlign.center,
+            text: introductionValue,
+            valueRenderStyle: 0,
+            textStyle: Theme.of(context).textTheme.curriculoStyle,
           ),
         ));
   }

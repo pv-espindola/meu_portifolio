@@ -4,7 +4,7 @@ import 'package:meu_portifolio/features/meta/presentation/ui/pages/home_meta_sec
 import 'package:provider/provider.dart';
 
 import '../../../../curriculo/presentation/ui/pages/home_curriculo_section.dart';
-import '../../../../curriculo/presentation/ui/widgets/curriculo_home/title_home.dart';
+import 'title_home.dart';
 
 class HomePhoneView extends StatelessWidget {
   const HomePhoneView({Key? key}) : super(key: key);

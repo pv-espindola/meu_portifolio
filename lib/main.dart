@@ -12,7 +12,8 @@ import 'config/enums.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  const myApp = AppProviderScope(child: CurriculoPortifolio());
+  const myApp = AppProviderScope(
+      child: CurriculoPortifolio());
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyAI8SsIX_Vg2x3_aqAtVQDqHec-oDh801s",
@@ -21,6 +22,7 @@ void main() async{
       projectId: "curriculo-protifolio",
     ),
   );
+
 
   final configuredApp = AppConfig(
       appTitle: 'Meu CurriculoPortifolio',
