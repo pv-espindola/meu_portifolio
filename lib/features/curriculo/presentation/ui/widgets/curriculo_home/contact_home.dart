@@ -40,10 +40,10 @@ class ContactHome extends StatelessWidget {
               style: Theme.of(context).textTheme.topicTitle,
               )),
 
-          LinkableItem(model: ContactModel.git(),),
-          LinkableItem(model: ContactModel.linkedin(),),
-          LinkableItem(model: ContactModel.phone(),),
-          LinkableItem(model: ContactModel.email(),),
+          MyLinkableItem(model: ContactModel.git(),),
+          MyLinkableItem(model: ContactModel.linkedin(),),
+          MyLinkableItem(model: ContactModel.phone(),),
+          MyLinkableItem(model: ContactModel.email(),),
 
 
 
@@ -69,12 +69,12 @@ class ContactHome extends StatelessWidget {
 
 }
 
-class LinkableItem extends StatelessWidget{
+class MyLinkableItem extends StatelessWidget{
   ContactModel model;
   Color boxColor = Colors.transparent;
 
 
-  LinkableItem({required this.model, super.key});
+  MyLinkableItem({required this.model, super.key});
 
   void _showSnackBar(BuildContext context){
     final String message = AppLocalizations.of(context)!.copied;
@@ -96,44 +96,46 @@ class LinkableItem extends StatelessWidget{
             : model.action;
 
 
-    return LinkRenderer(
-      text: model.text,
-      href: model.text,
-      child: Material(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(50))),
-          child: InkWell(
-            splashColor : Colors.grey,
-            splashFactory : InkSplash.splashFactory,
-            onTap: action,
-            onHover: (value){boxColor = value? Colors.purpleAccent[200]! : Colors.transparent;},
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
-              margin: const EdgeInsets.only(bottom: 2),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: boxColor,
+    return FittedBox(
+      child: LinkRenderer(
+        text: model.text,
+        href: model.text,
+        child: Material(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50))),
+            child: InkWell(
+              splashColor : Colors.grey,
+              splashFactory : InkSplash.splashFactory,
+              onTap: action,
+              onHover: (value){boxColor = value? Colors.purpleAccent[200]! : Colors.transparent;},
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+                margin: const EdgeInsets.only(bottom: 2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: boxColor,
 
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      model.icon,
+                      size: 24,
+                      color: Colors.black,),
+                    const SizedBox(width: 8,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        model.text,
+                        style: Theme.of(context).textTheme.likableStyle,
+                      ),
+                    )
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    model.icon,
-                    size: 24,
-                    color: Colors.black,),
-                  const SizedBox(width: 8,),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      model.text,
-                      style: Theme.of(context).textTheme.likableStyle,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )),
+            )),
+      ),
     );
 
   }
