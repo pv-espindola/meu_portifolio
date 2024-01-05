@@ -9,28 +9,28 @@ import 'config/app_config.dart';
 import 'config/app_theme.dart';
 import 'config/enums.dart';
 
-void main() async{
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  const myApp = AppProviderScope(
-      child: CurriculoPortifolio());
+  const myApp = AppProviderScope(child: CurriculoPortifolio());
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "AIzaSyAI8SsIX_Vg2x3_aqAtVQDqHec-oDh801s",
-      appId: "1:183703684757:web:1f211c731b4bcf983c7d9c",
-      messagingSenderId: "183703684757",
-      projectId: "curriculo-protifolio",
+        apiKey: "AIzaSyAI8SsIX_Vg2x3_aqAtVQDqHec-oDh801s",
+        authDomain: "curriculo-protifolio.firebaseapp.com",
+        projectId: "curriculo-protifolio",
+        storageBucket: "curriculo-protifolio.appspot.com",
+        messagingSenderId: "183703684757",
+        appId: "1:183703684757:web:6b05fd1bf08955f83c7d9c",
+        measurementId: "G-VH5JJC9Z92"
     ),
   );
 
-
   final configuredApp = AppConfig(
-      appTitle: 'Meu CurriculoPortifolio',
-      flavor: AppFlavor.desktop,
-      themeData: AppTheme.theme,
-      prefs: await SharedPreferences.getInstance(),
-      packageInfo: await PackageInfo.fromPlatform(),
-      child: myApp,
+    appTitle: 'Meu CurriculoPortifolio',
+    flavor: AppFlavor.desktop,
+    themeData: AppTheme.theme,
+    prefs: await SharedPreferences.getInstance(),
+    packageInfo: await PackageInfo.fromPlatform(),
+    child: myApp,
   );
 
   return runApp(configuredApp);

@@ -59,7 +59,7 @@ class TranslationProvider with ChangeNotifier {
   LanguageSelector get itemSelected => _itemSelected ?? items.first;
 
   Locale? _locale;
-  Locale? get locale => _locale ?? defaultLanguage;
+  Locale get locale => _locale ?? defaultLanguage;
   void setLocale(Locale loc) {
     if (!L10n.support.contains(loc)) {
       _locale = defaultLanguage;
